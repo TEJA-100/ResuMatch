@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "_id": "940f7ed73be73879b2af97e2",
+      "name": "Teja Sai Gudla",
+      "email": "teja75003@gmail.com",
+      "password": "$2a$10$V.zlH.HszyXOgLn0tNArEuu1UC9px/esGk5VHiai1VCRpnBq149N2",
+      "role": "candidate",
+      "createdAt": "2026-06-24T12:09:29.632Z",
+      "updatedAt": "2026-06-24T12:09:29.632Z"
+    }
+  ],
+  "candidates": [
+    {
+      "_id": "dc8708d6a8aea7c2c976d964",
+      "user": "940f7ed73be73879b2af97e2",
+      "phone": "07386475223",
+      "skills": [],
+      "education": [],
+      "experience": [],
+      "resume": {},
+      "createdAt": "2026-06-24T12:09:30.001Z",
+      "updatedAt": "2026-06-24T12:09:30.001Z"
+    }
+  ],
+  "jobs": [],
+  "applications": []
+}
