@@ -1,4 +1,4 @@
-# ResuMatch 🚀
+# ResuMatch - [ATS] 🚀
 
 A recruiting platform where candidates upload resumes, and hiring managers use parsing filters to quickly match applicants to specific jobs based on keyword frequency. 
 ---
