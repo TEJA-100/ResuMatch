@@ -1,28 +1,26 @@
 # ResuMatch 🚀
 
-ResuMatch is a modern, state-of-the-art **Applicant Tracking System (ATS)** and **Resume Parsing** platform. It automates candidate profile parsing, calculates job-to-resume matching scores using an intelligent matching engine, and provides detailed dashboards for both recruiters and candidates.
-
+A recruiting platform where candidates upload resumes, and hiring managers use parsing filters to quickly match applicants to specific jobs based on keyword frequency. 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-* **Core**: React 19, Vite (Fast Build Tool)
-* **Styling**: Tailwind CSS (Utility-first CSS), CSS3
+* **Core**: React - Vite 
+* **Styling**: Tailwind CSS , CSS3
 * **Routing**: React Router DOM v7
-* **Data Visualization**: Recharts (for analytics and statistics)
-* **API Client**: Axios
+
 
 ### Backend
 * **Runtime**: Node.js
 * **Framework**: Express.js
-* **Database**: MongoDB Atlas (with Mongoose ODM)
-* **Authentication**: JSON Web Tokens (JWT) & bcryptjs (password hashing)
+* **Database**: MongoDB Atlas 
+* **Authentication**: JSON Web Tokens (JWT) 
 * **File Uploads**: Multer
 * **Document Parsing**: 
   * `pdf-parse` (for PDF text extraction)
   * `mammoth` (for DOCX text extraction)
-* **Mail Service**: Nodemailer
+
 
 ---
 
@@ -103,11 +101,7 @@ ResuMatch is a modern, state-of-the-art **Applicant Tracking System (ATS)** and 
    PORT=5000
    MONGODB_URI=your_mongodb_connection_string
    JWT_SECRET=your_jwt_secret_key
-   SMTP_HOST=smtp.gmail.com
-   SMTP_PORT=465
-   SMTP_SECURE=true
-   SMTP_USER=your_email@gmail.com
-   SMTP_PASS=your_email_app_password
+  
    ```
 4. Start the backend server:
    * **Development mode**: `npm run dev`
