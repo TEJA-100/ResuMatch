@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+dist/
+.env*
+!.env.example
+
+# Local databases / data logs
+backend/data/db.json
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Editor/System directories and files
+.vscode/
+.idea/
+.DS_Store
+*.log
+Thumbs.db
