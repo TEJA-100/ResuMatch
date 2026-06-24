@@ -228,7 +228,7 @@ const RecruiterDashboard = () => {
                   actions={
                     cand.resume?.filename && (
                       <a
-                        href={`http://localhost:5000/uploads/${cand.resume.filepath}`}
+                        href={`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/uploads/${cand.resume.filepath}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-blue-600 hover:underline font-semibold bg-blue-50 border border-blue-200 px-3 py-1.5 rounded"

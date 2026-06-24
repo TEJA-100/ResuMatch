@@ -216,7 +216,7 @@ const ProfilePage = () => {
                   Uploaded: {new Date(profile.resume.uploadedAt).toLocaleDateString()}
                 </span>
                 <a
-                  href={`http://localhost:5000/uploads/${profile.resume.filepath}`}
+                  href={`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/uploads/${profile.resume.filepath}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-2 inline-block text-blue-600 hover:underline font-semibold"
