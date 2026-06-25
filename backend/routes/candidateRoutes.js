@@ -5,7 +5,7 @@ const {
   updateCandidateProfile,
   getCandidates
 } = require('../controllers/candidateController');
-const { uploadResume } = require('../controllers/resumeController');
+const { uploadResume, analyzeResume } = require('../controllers/resumeController');
 const { protect, authorize } = require('../middleware/authMiddleware');
 const upload = require('../middleware/uploadMiddleware');
 
@@ -15,5 +15,6 @@ router.get('/me', getCandidateProfile);
 router.put('/me', authorize('candidate'), updateCandidateProfile);
 router.get('/', authorize('recruiter'), getCandidates);
 router.post('/resume/upload', authorize('candidate'), upload.single('resume'), uploadResume);
+router.post('/resume/analyze', authorize('candidate'), upload.single('resume'), analyzeResume);
 
 module.exports = router;

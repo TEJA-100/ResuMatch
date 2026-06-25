@@ -18,6 +18,14 @@ const JobManagement = () => {
   const [description, setDescription] = useState('');
   const [requiredSkills, setRequiredSkills] = useState('');
   const [status, setStatus] = useState('open');
+  const [applicationDeadline, setApplicationDeadline] = useState('');
+  const [salaryRange, setSalaryRange] = useState('');
+  const [preferredQualifications, setPreferredQualifications] = useState('');
+  const [requiredQualifications, setRequiredQualifications] = useState('');
+  const [responsibilities, setResponsibilities] = useState('');
+  const [hiringName, setHiringName] = useState('');
+  const [hiringEmail, setHiringEmail] = useState('');
+  const [hiringLinkedin, setHiringLinkedin] = useState('');
 
   const [formError, setFormError] = useState('');
   const [formSuccess, setFormSuccess] = useState('');
@@ -49,6 +57,14 @@ const JobManagement = () => {
     setDescription(job.description);
     setRequiredSkills(job.requiredSkills.join(', '));
     setStatus(job.status);
+    setApplicationDeadline(job.applicationDeadline ? job.applicationDeadline.split('T')[0] : '');
+    setSalaryRange(job.salaryRange || '');
+    setPreferredQualifications(job.preferredQualifications || '');
+    setRequiredQualifications(job.requiredQualifications || '');
+    setResponsibilities(job.responsibilities || '');
+    setHiringName(job.hiringName || '');
+    setHiringEmail(job.hiringEmail || '');
+    setHiringLinkedin(job.hiringLinkedin || '');
     setFormError('');
     setFormSuccess('');
   };
@@ -64,6 +80,14 @@ const JobManagement = () => {
     setDescription('');
     setRequiredSkills('');
     setStatus('open');
+    setApplicationDeadline('');
+    setSalaryRange('');
+    setPreferredQualifications('');
+    setRequiredQualifications('');
+    setResponsibilities('');
+    setHiringName('');
+    setHiringEmail('');
+    setHiringLinkedin('');
     setFormError('');
     setFormSuccess('');
   };
@@ -73,7 +97,12 @@ const JobManagement = () => {
     setFormError('');
     setFormSuccess('');
 
-    if (!title || !company || !location || !experience || !employmentType || !description || !requiredSkills) {
+    if (
+      !title || !company || !location || !experience || !employmentType || 
+      !description || !requiredSkills || !applicationDeadline || !salaryRange || 
+      !preferredQualifications || !requiredQualifications || !responsibilities || 
+      !hiringName || !hiringEmail || !hiringLinkedin
+    ) {
       setFormError('Please fill in all fields');
       return;
     }
@@ -86,6 +115,14 @@ const JobManagement = () => {
       employmentType,
       description,
       requiredSkills,
+      applicationDeadline,
+      salaryRange,
+      preferredQualifications,
+      requiredQualifications,
+      responsibilities,
+      hiringName,
+      hiringEmail,
+      hiringLinkedin,
       status
     };
 
@@ -223,6 +260,33 @@ const JobManagement = () => {
 
             <div>
               <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                Salary Range *
+              </label>
+              <input
+                type="text"
+                className="form-input"
+                value={salaryRange}
+                onChange={(e) => setSalaryRange(e.target.value)}
+                placeholder="e.g. $80,000 - $100,000 / year"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                Application Deadline *
+              </label>
+              <input
+                type="date"
+                className="form-input"
+                value={applicationDeadline}
+                onChange={(e) => setApplicationDeadline(e.target.value)}
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
                 Required Skills * (Comma-separated)
               </label>
               <input
@@ -246,7 +310,88 @@ const JobManagement = () => {
                 className="form-input min-h-24 resize-y"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Describe job role, responsibilities, and qualifications..."
+                placeholder="Describe job role..."
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                Responsibilities *
+              </label>
+              <textarea
+                className="form-input min-h-24 resize-y"
+                value={responsibilities}
+                onChange={(e) => setResponsibilities(e.target.value)}
+                placeholder="List core responsibilities of the role..."
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                Required Qualifications *
+              </label>
+              <textarea
+                className="form-input min-h-24 resize-y"
+                value={requiredQualifications}
+                onChange={(e) => setRequiredQualifications(e.target.value)}
+                placeholder="List minimum education/experience/certification requirements..."
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                Preferred Qualifications *
+              </label>
+              <textarea
+                className="form-input min-h-24 resize-y"
+                value={preferredQualifications}
+                onChange={(e) => setPreferredQualifications(e.target.value)}
+                placeholder="List nice-to-have qualifications..."
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                Hiring Manager Name *
+              </label>
+              <input
+                type="text"
+                className="form-input"
+                value={hiringName}
+                onChange={(e) => setHiringName(e.target.value)}
+                placeholder="e.g. Jane Doe"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                Hiring Manager Email *
+              </label>
+              <input
+                type="email"
+                className="form-input"
+                value={hiringEmail}
+                onChange={(e) => setHiringEmail(e.target.value)}
+                placeholder="e.g. jane.doe@company.com"
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                Hiring Manager LinkedIn URL *
+              </label>
+              <input
+                type="url"
+                className="form-input"
+                value={hiringLinkedin}
+                onChange={(e) => setHiringLinkedin(e.target.value)}
+                placeholder="e.g. https://linkedin.com/in/janedoe"
                 required
               />
             </div>
@@ -302,6 +447,13 @@ const JobManagement = () => {
                     <div className="font-semibold text-slate-900">{job.title}</div>
                     <div className="text-xs text-slate-500">
                       {job.company} • {job.location} • {job.employmentType || 'Full-Time'} • {job.experience || 'N/A'}
+                    </div>
+                    <div className="text-[11px] text-slate-400 mt-1">
+                      Salary: <span className="text-slate-600 font-medium">{job.salaryRange}</span> • 
+                      Deadline: <span className="text-slate-600 font-medium">{job.applicationDeadline ? new Date(job.applicationDeadline).toLocaleDateString() : 'N/A'}</span>
+                    </div>
+                    <div className="text-[11px] text-slate-400 mt-0.5">
+                      Hiring Manager: <span className="text-slate-600 font-medium">{job.hiringName}</span> (<a href={job.hiringLinkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">LinkedIn</a>)
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-normal">

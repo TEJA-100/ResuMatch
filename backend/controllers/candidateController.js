@@ -26,11 +26,15 @@ exports.updateCandidateProfile = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Candidate profile not found' });
     }
 
-    const { phone, bio, skills, education, experience } = req.body;
+    const { phone, bio, skills, education, experience, linkedin, gmail, website, github } = req.body;
 
     // Handle profile update fields
     if (phone !== undefined) candidate.phone = phone;
     if (bio !== undefined) candidate.bio = bio;
+    if (linkedin !== undefined) candidate.linkedin = linkedin;
+    if (gmail !== undefined) candidate.gmail = gmail;
+    if (website !== undefined) candidate.website = website;
+    if (github !== undefined) candidate.github = github;
     
     // Update skills: support both array and comma-separated string
     if (skills !== undefined) {

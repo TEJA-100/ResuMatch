@@ -14,6 +14,10 @@ const ProfilePage = () => {
   const [phone, setPhone] = useState('');
   const [bio, setBio] = useState('');
   const [skills, setSkills] = useState('');
+  const [linkedin, setLinkedin] = useState('');
+  const [gmail, setGmail] = useState('');
+  const [website, setWebsite] = useState('');
+  const [github, setGithub] = useState('');
 
   // Education item states
   const [school, setSchool] = useState('');
@@ -43,6 +47,10 @@ const ProfilePage = () => {
       setPhone(data.phone || '');
       setBio(data.bio || '');
       setSkills(data.skills ? data.skills.join(', ') : '');
+      setLinkedin(data.linkedin || '');
+      setGmail(data.gmail || '');
+      setWebsite(data.website || '');
+      setGithub(data.github || '');
     } catch (err) {
       console.error(err);
       setGeneralError('Failed to load profile');
@@ -66,7 +74,11 @@ const ProfilePage = () => {
         name,
         phone,
         bio,
-        skills
+        skills,
+        linkedin,
+        gmail,
+        website,
+        github
       });
       setGeneralSuccess('Basic profile information updated successfully!');
       setProfile(res.data.data);
@@ -303,6 +315,57 @@ const ProfilePage = () => {
                 <p className="text-[10px] text-slate-400 mt-1">
                   Separate with commas. These will be matched against job requirements.
                 </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                    LinkedIn URL
+                  </label>
+                  <input
+                    type="url"
+                    className="form-input"
+                    value={linkedin}
+                    onChange={(e) => setLinkedin(e.target.value)}
+                    placeholder="https://linkedin.com/in/username"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                    Gmail Address
+                  </label>
+                  <input
+                    type="email"
+                    className="form-input"
+                    value={gmail}
+                    onChange={(e) => setGmail(e.target.value)}
+                    placeholder="username@gmail.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                    Website / Portfolio
+                  </label>
+                  <input
+                    type="url"
+                    className="form-input"
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                    placeholder="https://yourwebsite.com"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                    GitHub URL
+                  </label>
+                  <input
+                    type="url"
+                    className="form-input"
+                    value={github}
+                    onChange={(e) => setGithub(e.target.value)}
+                    placeholder="https://github.com/username"
+                  />
+                </div>
               </div>
 
               <button

@@ -4,6 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import API from '../services/api';
 import JobCard from '../components/JobCard';
 import DataTable from '../components/DataTable';
+import StatisticsCard from '../components/StatisticsCard';
 
 const CandidateDashboard = () => {
   const { user } = useContext(AuthContext);
@@ -57,10 +58,10 @@ const CandidateDashboard = () => {
   const getStatusColor = (status) => {
     const map = {
       'Applied': 'bg-blue-50 text-blue-700 border-blue-200',
-      'Shortlisted': 'bg-purple-50 text-purple-700 border-purple-200',
-      'Interview Scheduled': 'bg-amber-50 text-amber-700 border-amber-200',
+      'Shortlisted': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+      'Interview Scheduled': 'bg-orange-50 text-orange-700 border-orange-200',
       'Rejected': 'bg-rose-50 text-rose-700 border-rose-200',
-      'Hired': 'bg-emerald-50 text-emerald-700 border-emerald-200'
+      'Hired': 'bg-teal-50 text-teal-700 border-teal-200'
     };
     return map[status] || 'bg-slate-100 text-slate-700 border-slate-200';
   };
@@ -77,6 +78,10 @@ const CandidateDashboard = () => {
       job.description.toLowerCase().includes(query)
     );
   });
+
+  const totalApplications = applications.length;
+  const appliedApplications = applications.filter(app => app.status === 'Applied').length;
+  const shortlistedApplications = applications.filter(app => app.status === 'Shortlisted').length;
 
   if (loading) {
     return (
@@ -141,6 +146,28 @@ const CandidateDashboard = () => {
             Upload Resume
           </Link>
         </div>
+      </div>
+
+      {/* Statistics Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+        <StatisticsCard
+          title="Total Applications"
+          value={totalApplications}
+          color="blue"
+          subtext="Submitted applications"
+        />
+        <StatisticsCard
+          title="Applied"
+          value={appliedApplications}
+          color="amber"
+          subtext="Under initial review"
+        />
+        <StatisticsCard
+          title="Shortlisted"
+          value={shortlistedApplications}
+          color="green"
+          subtext="Selected for next steps"
+        />
       </div>
 
       {applyStatus.message && (

@@ -15,6 +15,7 @@ import ResumeUploadPage from './pages/ResumeUploadPage';
 import AtsMatchingPage from './pages/AtsMatchingPage';
 import ApplicantTrackingPage from './pages/ApplicantTrackingPage';
 import ProfilePage from './pages/ProfilePage';
+import ResumeAtsChecker from './pages/ResumeAtsChecker';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, loading } = useContext(AuthContext);
@@ -90,6 +91,16 @@ function App() {
                 <StandardLayout>
                   <ResumeUploadPage />
                 </StandardLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/resume-ats-checker"
+            element={
+              <ProtectedRoute allowedRoles={['candidate']}>
+                <DashboardLayout role="candidate">
+                  <ResumeAtsChecker />
+                </DashboardLayout>
               </ProtectedRoute>
             }
           />

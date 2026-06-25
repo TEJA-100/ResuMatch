@@ -33,6 +33,18 @@ const CandidateSchema = new mongoose.Schema({
   bio: {
     type: String
   },
+  linkedin: {
+    type: String
+  },
+  gmail: {
+    type: String
+  },
+  website: {
+    type: String
+  },
+  github: {
+    type: String
+  },
   skills: [{
     type: String
   }],

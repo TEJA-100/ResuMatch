@@ -51,6 +51,18 @@ const Sidebar = ({ role }) => {
                 My Dashboard
               </NavLink>
               <NavLink
+                to="/resume-ats-checker"
+                className={({ isActive }) =>
+                  `flex items-center px-3 py-2 text-sm font-medium rounded-md ${
+                    isActive
+                      ? 'bg-blue-50 text-blue-700 border-l-2 border-blue-600 rounded-l-none'
+                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                  }`
+                }
+              >
+                ATS Score Checker
+              </NavLink>
+              <NavLink
                 to="/profile"
                 className={({ isActive }) =>
                   `flex items-center px-3 py-2 text-sm font-medium rounded-md ${

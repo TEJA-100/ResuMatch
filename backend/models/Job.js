@@ -36,6 +36,38 @@ const JobSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please add at least one required skill']
   }],
+  applicationDeadline: {
+    type: Date,
+    required: [true, 'Please add an application deadline']
+  },
+  salaryRange: {
+    type: String,
+    required: [true, 'Please add a salary range']
+  },
+  preferredQualifications: {
+    type: String,
+    required: [true, 'Please add preferred qualifications']
+  },
+  requiredQualifications: {
+    type: String,
+    required: [true, 'Please add required qualifications']
+  },
+  responsibilities: {
+    type: String,
+    required: [true, 'Please add responsibilities']
+  },
+  hiringName: {
+    type: String,
+    required: [true, 'Please add hiring manager name']
+  },
+  hiringEmail: {
+    type: String,
+    required: [true, 'Please add hiring manager email']
+  },
+  hiringLinkedin: {
+    type: String,
+    required: [true, 'Please add hiring manager LinkedIn URL']
+  },
   status: {
     type: String,
     enum: ['open', 'closed'],

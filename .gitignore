@@ -15,3 +15,5 @@ backend/uploads/*
 .DS_Store
 *.log
 Thumbs.db
+
+.vercel

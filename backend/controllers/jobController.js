@@ -6,7 +6,32 @@ const Application = require('../models/Application');
 // @access  Private (Recruiter only)
 exports.createJob = async (req, res) => {
   try {
-    const { title, company, location, experience, employmentType, description, requiredSkills } = req.body;
+    const { 
+      title, 
+      company, 
+      location, 
+      experience, 
+      employmentType, 
+      description, 
+      requiredSkills,
+      applicationDeadline,
+      salaryRange,
+      preferredQualifications,
+      requiredQualifications,
+      responsibilities,
+      hiringName,
+      hiringEmail,
+      hiringLinkedin
+    } = req.body;
+
+    if (
+      !title || !company || !location || !experience || !employmentType || 
+      !description || !requiredSkills || !applicationDeadline || !salaryRange || 
+      !preferredQualifications || !requiredQualifications || !responsibilities || 
+      !hiringName || !hiringEmail || !hiringLinkedin
+    ) {
+      return res.status(400).json({ success: false, message: 'Please fill in all fields' });
+    }
 
     // Check if skills is a string and convert to array
     let skillsArray = [];
@@ -24,6 +49,14 @@ exports.createJob = async (req, res) => {
       employmentType,
       description,
       requiredSkills: skillsArray,
+      applicationDeadline,
+      salaryRange,
+      preferredQualifications,
+      requiredQualifications,
+      responsibilities,
+      hiringName,
+      hiringEmail,
+      hiringLinkedin,
       recruiter: req.user.id
     });
 
@@ -94,7 +127,24 @@ exports.updateJob = async (req, res) => {
       return res.status(401).json({ success: false, message: 'Not authorized to update this job' });
     }
 
-    const { title, company, location, experience, employmentType, description, requiredSkills, status } = req.body;
+    const { 
+      title, 
+      company, 
+      location, 
+      experience, 
+      employmentType, 
+      description, 
+      requiredSkills, 
+      status,
+      applicationDeadline,
+      salaryRange,
+      preferredQualifications,
+      requiredQualifications,
+      responsibilities,
+      hiringName,
+      hiringEmail,
+      hiringLinkedin
+    } = req.body;
 
     let skillsArray = job.requiredSkills;
     if (requiredSkills) {
@@ -113,7 +163,15 @@ exports.updateJob = async (req, res) => {
         employmentType: employmentType || job.employmentType,
         description: description || job.description,
         requiredSkills: skillsArray,
-        status: status || job.status
+        status: status || job.status,
+        applicationDeadline: applicationDeadline || job.applicationDeadline,
+        salaryRange: salaryRange || job.salaryRange,
+        preferredQualifications: preferredQualifications || job.preferredQualifications,
+        requiredQualifications: requiredQualifications || job.requiredQualifications,
+        responsibilities: responsibilities || job.responsibilities,
+        hiringName: hiringName || job.hiringName,
+        hiringEmail: hiringEmail || job.hiringEmail,
+        hiringLinkedin: hiringLinkedin || job.hiringLinkedin
       },
       { new: true, runValidators: true }
     );

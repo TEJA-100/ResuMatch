@@ -86,17 +86,64 @@ const AtsMatchingPage = () => {
                   {job.experience}
                 </span>
               )}
+              {job.salaryRange && (
+                <span className="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold">
+                  {job.salaryRange}
+                </span>
+              )}
+              {job.applicationDeadline && (
+                <span className="px-2 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200 font-semibold">
+                  Deadline: {new Date(job.applicationDeadline).toLocaleDateString()}
+                </span>
+              )}
             </div>
           </div>
         </div>
 
-        <div className="mt-4">
-          <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-            Job Description Summary
-          </h3>
-          <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line bg-slate-50 p-4 rounded border border-slate-100">
-            {job.description}
-          </p>
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+              Job Description Summary
+            </h3>
+            <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line bg-slate-50 p-4 rounded border border-slate-100">
+              {job.description}
+            </p>
+          </div>
+
+          {job.responsibilities && (
+            <div>
+              <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                Core Responsibilities
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line bg-slate-50 p-4 rounded border border-slate-100">
+                {job.responsibilities}
+              </p>
+            </div>
+          )}
+        </div>
+
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+          {job.requiredQualifications && (
+            <div>
+              <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                Required Qualifications
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line bg-slate-50 p-4 rounded border border-slate-100">
+                {job.requiredQualifications}
+              </p>
+            </div>
+          )}
+
+          {job.preferredQualifications && (
+            <div>
+              <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                Preferred Qualifications
+              </h3>
+              <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line bg-slate-50 p-4 rounded border border-slate-100">
+                {job.preferredQualifications}
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="mt-4">
@@ -114,6 +161,26 @@ const AtsMatchingPage = () => {
             ))}
           </div>
         </div>
+
+        {job.hiringName && (
+          <div className="mt-6 bg-slate-50 rounded-lg p-4 border border-slate-200/60 max-w-md flex items-center justify-between">
+            <div>
+              <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Hiring Manager</div>
+              <div className="text-sm font-semibold text-slate-700">{job.hiringName}</div>
+              <a href={`mailto:${job.hiringEmail}`} className="text-xs text-blue-600 hover:underline">{job.hiringEmail}</a>
+            </div>
+            {job.hiringLinkedin && (
+              <a
+                href={job.hiringLinkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 bg-blue-50 text-blue-600 border border-blue-100 rounded text-xs font-semibold hover:bg-blue-100 transition-colors"
+              >
+                LinkedIn Profile
+              </a>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Rankings Section */}
@@ -140,6 +207,25 @@ const AtsMatchingPage = () => {
                 {cand.name}
                 <div className="text-xs text-slate-400">{cand.email}</div>
                 {cand.phone && <div className="text-xs text-slate-400">{cand.phone}</div>}
+                {(cand.linkedin || cand.gmail || cand.website || cand.github) && (
+                  <div className="flex gap-1.5 mt-1 text-[10px] items-center">
+                    {cand.linkedin && (
+                      <a href={cand.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">LinkedIn</a>
+                    )}
+                    {cand.linkedin && (cand.gmail || cand.website || cand.github) && <span className="text-slate-300">•</span>}
+                    {cand.gmail && (
+                      <a href={`mailto:${cand.gmail}`} className="text-rose-600 hover:underline font-semibold">Gmail</a>
+                    )}
+                    {cand.gmail && (cand.website || cand.github) && <span className="text-slate-300">•</span>}
+                    {cand.website && (
+                      <a href={cand.website} target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:underline font-semibold">Website</a>
+                    )}
+                    {cand.website && cand.github && <span className="text-slate-300">•</span>}
+                    {cand.github && (
+                      <a href={cand.github} target="_blank" rel="noopener noreferrer" className="text-slate-800 hover:underline font-semibold">GitHub</a>
+                    )}
+                  </div>
+                )}
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <span
@@ -192,12 +278,12 @@ const AtsMatchingPage = () => {
                     cand.status === 'Applied'
                       ? 'bg-blue-50 border-blue-200 text-blue-700'
                       : cand.status === 'Shortlisted'
-                      ? 'bg-purple-50 border-purple-200 text-purple-700'
+                      ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
                       : cand.status === 'Interview Scheduled'
-                      ? 'bg-amber-50 border-amber-200 text-amber-700'
+                      ? 'bg-orange-50 border-orange-200 text-orange-700'
                       : cand.status === 'Rejected'
                       ? 'bg-rose-50 border-rose-200 text-rose-700'
-                      : 'bg-emerald-50 border-emerald-200 text-emerald-700'
+                      : 'bg-teal-50 border-teal-200 text-teal-700'
                   }`}
                 >
                   {cand.status}

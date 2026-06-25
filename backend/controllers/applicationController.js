@@ -222,7 +222,15 @@ exports.getAtsMatchDetails = async (req, res) => {
         title: job.title,
         company: job.company,
         description: job.description,
-        requiredSkills: job.requiredSkills
+        requiredSkills: job.requiredSkills,
+        applicationDeadline: job.applicationDeadline,
+        salaryRange: job.salaryRange,
+        preferredQualifications: job.preferredQualifications,
+        requiredQualifications: job.requiredQualifications,
+        responsibilities: job.responsibilities,
+        hiringName: job.hiringName,
+        hiringEmail: job.hiringEmail,
+        hiringLinkedin: job.hiringLinkedin
       },
       rankings: applications.map((app, index) => ({
         rank: index + 1,
@@ -235,7 +243,11 @@ exports.getAtsMatchDetails = async (req, res) => {
         matchedSkills: app.matchedSkills,
         missingSkills: app.missingSkills,
         status: app.status,
-        resumeFilename: app.candidate.resume ? app.candidate.resume.filename : ''
+        resumeFilename: app.candidate.resume ? app.candidate.resume.filename : '',
+        linkedin: app.candidate.linkedin,
+        gmail: app.candidate.gmail,
+        website: app.candidate.website,
+        github: app.candidate.github
       }))
     });
   } catch (error) {
