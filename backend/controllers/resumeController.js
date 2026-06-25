@@ -1,6 +1,7 @@
 const Candidate = require('../models/Candidate');
 const { parseResumeText } = require('../utils/resumeParser');
 const { extractSkills } = require('../utils/matchEngine');
+const fs = require('fs');
 
 // @desc    Upload and parse resume
 // @route   POST /api/resume/upload
